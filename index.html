@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="./bootstrap-5.3.0-alpha1-dist/css/bootstrap.rtl.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div
+        class="row justify-content-center align-items-center"
+        style="height: 100vh"
+      >
+        <div class="card" style="width: fit-content">
+          <div class="card-body">
+            <div class="task-list">
+              <ul class="list-group"></ul>
+            </div>
+            <div class="add-task-bar mt-3 p-0">
+              <form class="row g-3 justify-content-around">
+                <div class="col-2">
+                  <input
+                    type="text"
+                    class="form-control-plaintext fw-bold p-0 m-0"
+                    readonly
+                    value="Task"
+                  />
+                </div>
+                <div class="col-auto">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="task-content"
+                    placeholder="Task Name"
+                  />
+                </div>
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-primary mb-3">
+                    Add
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./bootstrap-5.3.0-alpha1-dist/js/bootstrap.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
