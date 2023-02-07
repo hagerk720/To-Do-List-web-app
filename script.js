@@ -14,7 +14,6 @@ class Task {
 let tasksList = [];
 _getList();
 if (tasksList.length > 0) {
-  console.log("tasks", tasksList);
   tasksList.forEach((t) => {
     createTask(t);
   });
@@ -26,16 +25,40 @@ addBtn.addEventListener("click", function (e) {
   createTask(task);
   tasksList.push(task);
   _addToLocalStorage();
+  taskContent.value = "";
 });
 list.addEventListener("click", function (e) {
   if (e.target.classList.contains("delete-icon")) {
+    deleteTask(e);
     e.target.parentElement.parentElement.parentElement.remove();
   }
   if (e.target.classList.contains("done-icon")) {
     _markTaskAsDone(e);
   }
 });
+function createTask(task) {
+  const html = `
+          <li class="list-group-item " style="max-height: fit-content; width:200px" >
+          <div class="task-item " data-id =${task.id}>
+            <p class= "task-title">${task.content}</p>
+            <div class="icons">
+              <span class="task-icon done-icon">✔️</span>
+              <span class="task-icon delete-icon">❌</span>
+        </div>
+      </div>
+    </li>
+      `;
+  list.insertAdjacentHTML("afterbegin", html);
+  let item = document.querySelector(".task-title");
+  let card = item.parentElement.parentElement;
+  card.style.backgroundColor = getColor();
+  card.style.opacity = 0.8;
 
+  if (task.isDone) {
+    item.classList.add("done");
+  }
+  return html;
+}
 function _markTaskAsDone(e) {
   let task = e.target.parentElement.parentElement.querySelector(".task-title");
   task.classList.add("done");
@@ -53,22 +76,20 @@ function _addToLocalStorage() {
 function _getList() {
   return (tasksList = JSON.parse(localStorage.getItem("tasks")));
 }
-function createTask(task) {
-  const html = `
-          <li class="list-group-item">
-          <div class="task-item " data-id =${task.id}>
-            <h5 class= "task-title">${task.content}</h5>
-            <div class="icons">
-              <span class="task-icon done-icon">✔️</span>
-              <span class="task-icon delete-icon">❌</span>
-        </div>
-      </div>
-    </li>
-      `;
-  list.insertAdjacentHTML("afterbegin", html);
-  let item = document.querySelector(".task-title");
-  if (task.isDone) {
-    item.classList.add("done");
-  }
-  return html;
+
+function deleteTask(e) {
+  const taskId = e.target.parentElement.parentElement.dataset.id;
+  tasksList = _getList().filter((t) => t.id != taskId);
+  _addToLocalStorage();
+}
+function getColor() {
+  return (
+    "hsl(" +
+    360 * Math.random() +
+    "," +
+    (25 + 70 * Math.random()) +
+    "%," +
+    (85 + 10 * Math.random()) +
+    "%)"
+  );
 }

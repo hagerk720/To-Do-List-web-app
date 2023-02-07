@@ -1,10 +1,28 @@
-.task-item {
-  display: flex;
-  justify-content: space-between;
+body {
+  background-color: #ececec;
 }
 .task-icon {
   cursor: pointer;
 }
 .done {
   text-decoration: line-through;
+  color: green;
+}
+.card {
+}
+.side-bar {
+  background-color: gray;
+  background-image: url("./peakpx.jpg");
+  background-size: cover;
+  border-radius: 15px 0 0 15px;
+}
+
+li {
+  border-radius: 15px;
+}
+.task-title {
+  font-weight: bold;
+}
+.list-group-horizontal {
+  flex-wrap: wrap !important;
 }
