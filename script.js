@@ -4,6 +4,13 @@ const deleteBtn = document.querySelector(".delete-icon");
 const taskContent = document.querySelector("#task-content");
 const list = document.querySelector(".list-group");
 // const taskItem = document.querySelector(".task-item");
+class Task {
+  constructor(id, content, isDone) {
+    this.id = id;
+    this.content = content;
+    this.isDone = isDone;
+  }
+}
 let tasksList = [];
 _getList();
 if (tasksList.length > 0) {
@@ -42,13 +49,6 @@ function _markTaskAsDone(e) {
 }
 function _addToLocalStorage() {
   localStorage.setItem("tasks", JSON.stringify(tasksList));
-}
-class Task {
-  constructor(id, content, isDone) {
-    this.id = id;
-    this.content = content;
-    this.isDone = isDone;
-  }
 }
 function _getList() {
   return (tasksList = JSON.parse(localStorage.getItem("tasks")));
